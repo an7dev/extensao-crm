@@ -49,7 +49,8 @@ const fetchConfig = async (
 
   const base = session.crmUrl.trim().replace(/\/+$/, "")
   const query = new URLSearchParams(params).toString()
-  const endpoint = `${base}${path}?${query}`
+  const separator = path.includes("?") ? "&" : "?"
+  const endpoint = `${base}${path}${separator}${query}`
 
   const response = await fetch(endpoint, {
     method: "GET",
